@@ -1,6 +1,6 @@
 {
   "name": "zonetk-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "zonetk脚手架",
   "main": "index.js",
   "bin": {
@@ -19,6 +19,10 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yunmoon/zonetk-cli.git"
   },
   "author": "yunmoon",
   "license": "MIT"
