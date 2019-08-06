@@ -1,0 +1,25 @@
+{
+  "name": "zonetk-cli",
+  "version": "1.0.0",
+  "description": "zonetk脚手架",
+  "main": "index.js",
+  "bin": {
+    "zonetk": "./bin/cli.js"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "lodash": "^4.17.15",
+    "mkdirp": "^0.5.1",
+    "pluralize": "^8.0.0",
+    "yargs": "^13.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "yunmoon",
+  "license": "MIT"
+}
