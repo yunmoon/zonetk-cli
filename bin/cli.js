@@ -7,6 +7,7 @@ yargs
   .command(require("../lib/generateEntityCommand"))
   .command(require("../lib/generateControllerCommand"))
   .command(require("../lib/generateMiddlewareCommand"))
+  .command(require("../lib/generatePluginCommand"))
   .demandCommand(1, 'You need at least one command before moving on')
   .alias("v", "version")
   .help("h")
