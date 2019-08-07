@@ -9,19 +9,24 @@ export class DatabaseLog implements Logger {
   }
 
   logQuery(query: string, parameters?: any[], queryRunner?: import("zonetk-core").QueryRunner) {
-    const requestContext: MidwayRequestContainer = this.app.applicationContext.get("requestContext");
-    this.ctx = requestContext.ctx
+    try {
+      const requestContext: MidwayRequestContainer = this.app.applicationContext.get("requestContext");
+      this.ctx = requestContext.ctx
+    } catch (error) {
+    }
     const log = this.getLogger();
     log.info({ query, parameters });
   }
   logQueryError(error: string, query: string, parameters?: any[], queryRunner?: import("zonetk-core").QueryRunner) {
-    throw new Error("Method not implemented.");
+    const log = this.getLogger();
+    log.info({ error, query });
   }
   logQuerySlow(time: number, query: string, parameters?: any[], queryRunner?: import("zonetk-core").QueryRunner) {
     throw new Error("Method not implemented.");
   }
   logSchemaBuild(message: string, queryRunner?: import("zonetk-core").QueryRunner) {
-    throw new Error("Method not implemented.");
+    const log = this.getLogger();
+    log.info(message);
   }
   logMigration(message: string, queryRunner?: import("zonetk-core").QueryRunner) {
     throw new Error("Method not implemented.");

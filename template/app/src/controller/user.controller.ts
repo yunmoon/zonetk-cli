@@ -17,10 +17,7 @@ export default class UserController extends BaseController {
   @get("/user/:id")
   async getUserDetail(ctx: Context) {
     const id = ctx.params.id;
-    // const result = await this.transaction(async (tm) => {
-    //   return await this.userService.findOne({ id }, tm);
-    // });
-    const result = await this.userService.findOne({ id });
+    const result = await this.userService.findById(id);
     ctx.body = {
       code: 0,
       msg: "测试1",
