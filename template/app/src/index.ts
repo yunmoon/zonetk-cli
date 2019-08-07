@@ -20,6 +20,8 @@ import { DatabaseLog } from "./lib/databaseLog.lib";
         }
     }));
     app.use(json());
+    const requestLogMiddleware: WebMiddleware = await app.applicationContext.getAsync("requestLogMiddleware");
+    app.use(requestLogMiddleware.resolve());
     await app.ready();
     app.listen(port, () => {
         console.log(`app is runing: http://localhost:${port}`)
