@@ -3,13 +3,13 @@ import * as json from "koa-json";
 import * as bodyparser from "koa-bodyparser";
 import * as config from "config";
 import { DatabaseLog } from "./lib/databaseLog.lib";
-(async () => {
-    const app = new ZonetkApplication();
-    const dbConfig = config.get("db");
-    createConnection({
-        ...dbConfig,
-        logger: new DatabaseLog(app)
-    });
+const dbConfig = config.get("db");
+const app = new ZonetkApplication();
+//建立数据库连接
+createConnection({
+    ...dbConfig,
+    logger: new DatabaseLog(app)
+}).then(async () => {
     const port = process.env.PORT || "1337";
     const errorHandleMiddleware: WebMiddleware = await app.applicationContext.getAsync("errorHandleMiddleware");
     app.use(errorHandleMiddleware.resolve());
@@ -26,4 +26,4 @@ import { DatabaseLog } from "./lib/databaseLog.lib";
     app.listen(port, () => {
         console.log(`app is runing: http://localhost:${port}`)
     })
-})()
+}).catch(error => console.log('TypeORM connection error: ', error));
