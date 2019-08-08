@@ -8,6 +8,7 @@ yargs
   .command(require("../lib/generateControllerCommand"))
   .command(require("../lib/generateMiddlewareCommand"))
   .command(require("../lib/generatePluginCommand"))
+  .command(require("../lib/generateTransformerCommand"))
   .demandCommand(1, 'You need at least one command before moving on')
   .alias("v", "version")
   .help("h")
