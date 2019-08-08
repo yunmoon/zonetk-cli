@@ -18,6 +18,15 @@ function getMigrationDir() {
   }
 }
 module.exports = {
+  logger: {
+    level: "info",
+    // filename: 'output-%DATE%.log',
+    // dirname: `${appDir}/logs`,
+    // datePattern: 'YYYY-MM-DD-HH',
+    // zippedArchive: true,
+    // maxSize: '20m',
+    // maxFiles: '15d',
+  },
   db: {
     type: "mysql",
     host: "127.0.0.1",
