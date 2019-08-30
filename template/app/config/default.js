@@ -48,5 +48,20 @@ module.exports = {
     host: "127.0.0.1", // Redis host
     family: 4, // 4 (IPv4) or 6 (IPv6)
     db: 1
-  }
+  },
+  requestIdKey: "x-request-id", // ctx request header, for log
+  // rpc: {
+  //   zookeeper: {
+  //     address: "127.0.0.1:2181"
+  //   },
+  //   //rpc server config
+  //   server: {
+  //     service: "zonetk.demo",
+  //     port: 12202
+  //   },
+  //   //rpc client config
+  //   client: {
+  //     demoClient: "zonetk.demo"
+  //   }
+  // }
 }
