@@ -19,7 +19,7 @@ export default class UserController extends BaseController {
 
   @get("/user/:id")
   async getUserDetail() {
-    const id = ctx.params.id;
+    const id = this.ctx.params.id;
     await this.redis.set("test", "12314243");
     console.log(await this.redis.get("test"));
     const result = await this.userService.findById(id);
