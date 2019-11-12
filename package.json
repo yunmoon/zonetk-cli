@@ -1,6 +1,6 @@
 {
   "name": "zonetk-cli",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "zonetk脚手架",
   "main": "index.js",
   "bin": {
