@@ -5,4 +5,5 @@ build/
 tmp/
 temp/
 dist/
+logs/
 .DS_Store
