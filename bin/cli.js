@@ -11,6 +11,7 @@ yargs
   .command(require("../lib/generateTransformerCommand"))
   .command(require("../lib/generateRpcServiceCommand"))
   .command(require("../lib/generateScheduleCommand"))
+  .command(require("../lib/createAdminCommand"))
   .demandCommand(1, 'You need at least one command before moving on')
   .alias("v", "version")
   .help("h")
