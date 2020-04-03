@@ -1,4 +1,4 @@
-import { provide, inject, controller, get, BaseController, plugin } from "zonetk-core"
+import { provide, inject, controller, Http, BaseController, plugin } from "zonetk-core"
 import UserService from "../service/user.service";
 import { Redis, Cluster } from "ioredis";
 @provide("userController")
@@ -9,7 +9,7 @@ export default class UserController extends BaseController {
 
   @plugin("redis") redis: Redis | Cluster
 
-  @get("/users")
+  @Http.get("/users")
   public getUsers() {
     this.ctx.body = {
       code: 0,
@@ -17,7 +17,7 @@ export default class UserController extends BaseController {
     }
   }
 
-  @get("/user/:id")
+  @Http.get("/user/:id")
   async getUserDetail() {
     const id = this.ctx.params.id;
     await this.redis.set("test", "12314243");

@@ -6,22 +6,27 @@ export class RequestLogMiddleware extends BaseMiddleware implements WebMiddlewar
     return async (ctx, next) => {
       this.ctx = ctx;
       const log = this.getLogger();
+      let bodyLength = JSON.stringify(ctx.request.body).length
       log.info({
         ip: ctx.ip,
         method: ctx.method,
         url: ctx.url,
         query: ctx.request.query,
-        body: ctx.request.body
+        body: bodyLength > 500 ? "body too large.." : ctx.request.body
       })
       const startTime = new Date().getTime();
       await next();
-      const endTime = new Date().getTime();
-      log.info({
-        url: ctx.url,
-        status: ctx.status,
-        response: ctx.body,
-        spent: `${endTime - startTime}ms`
-      });
+      if (ctx.status === 200) {
+        const endTime = new Date().getTime();
+        bodyLength = JSON.stringify(ctx.body).length
+        log.info({
+          url: ctx.url,
+          status: ctx.status,
+          response: bodyLength > 500 ? "body too large.." : ctx.body,
+          spent: `${endTime - startTime}ms`
+        });
+      }
+      
     }
   }
 }

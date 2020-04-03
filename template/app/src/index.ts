@@ -1,6 +1,7 @@
 import { ZonetkApplication, WebMiddleware, createConnection } from "zonetk-core";
 import * as json from "koa-json";
 import * as bodyparser from "koa-bodyparser";
+import * as validate from "koa-validate";
 import * as config from "config";
 import { DatabaseLog } from "./lib/databaseLog.lib";
 const dbConfig = config.get("db");
@@ -19,6 +20,7 @@ createConnection({
             text: ["text/xml", "application/xml"]
         }
     }));
+    validate(app);
     app.use(json());
     const requestLogMiddleware: WebMiddleware = await app.applicationContext.getAsync("requestLogMiddleware");
     app.use(requestLogMiddleware.resolve());
