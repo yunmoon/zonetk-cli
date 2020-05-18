@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "zonetk-core";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from "zonetk-core";
 
 @Entity({ name: "users" })
 export class User {
@@ -6,13 +6,21 @@ export class User {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ type: "varchar", length: 32 })
+    @Column()
     firstName: string;
 
-    @Column({ type: "varchar", length: 32 })
+    @Column()
     lastName: string;
 
     @Column()
     age: number;
+
+    @Column()
+    @CreateDateColumn()
+    createdAt: Date;
+
+    @Column()
+    @UpdateDateColumn()
+    updatedAt: Date;
 
 }

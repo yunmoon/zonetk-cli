@@ -8,8 +8,11 @@ export class UserCreateMigration1564975664486 implements MigrationInterface {
             columns: [
                 {
                     name: "id",
-                    type: "int",
-                    isPrimary: true
+                    type: "int(11)",
+                    isPrimary: true,
+                    isGenerated: true,
+                    generationStrategy: "increment",
+                    isNullable: false
                 },
                 {
                     name: "firstName",
@@ -22,6 +25,16 @@ export class UserCreateMigration1564975664486 implements MigrationInterface {
                 {
                     name: "age",
                     type: "int",
+                },
+                {
+                    name: "createdAt",
+                    type: "datetime",
+                    default: "now()"
+                },
+                {
+                    name: "updatedAt",
+                    type: "datetime",
+                    default: "now()"
                 }
             ]
         });
