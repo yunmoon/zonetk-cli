@@ -1,16 +1,21 @@
-import { Logger, logger, ZonetkApplication, MidwayRequestContainer, QueryRunner } from "zonetk-core";
+import { Logger, logger, ZonetkApplication, MidwayRequestContainer, QueryRunner, config } from "zonetk-core";
 export class DatabaseLog implements Logger {
   @logger()
   logger
 
+  @config("requestIdKey")
+  requestIdKey: string
+
   ctx
+
+  rpcRequestCall
 
   env
 
-  private queryLogEnv = ["development"];
+  private queryLogEnv = ["development", "cdtest"];
 
   constructor(private app: ZonetkApplication) {
-    this.env = process.env.NODE_ENV;
+    this.env = process.env.NODE_ENV || "development";
   }
 
   logQuery(query: string, parameters?: any[], queryRunner?: QueryRunner) {
@@ -43,9 +48,19 @@ export class DatabaseLog implements Logger {
     try {
       const requestContext: MidwayRequestContainer = this.app.applicationContext.get("requestContext");
       this.ctx = requestContext.ctx
+      const rpcRequestContainer: any = this.app.applicationContext.get("rpcRequestContainer");
+      this.rpcRequestCall = rpcRequestContainer.get("rpcRequestCall")
     } catch (error) {
+      let requestId = "";
+      return this.logger.child({ requestId });
     }
-    const requestId = (this.ctx && this.ctx.get("request-id")) || ""
+    let requestId = "";
+    if (this.ctx && this.ctx.get(this.requestIdKey)) {
+      requestId = this.ctx.get(this.requestIdKey)
+    }
+    if (!requestId && this.rpcRequestCall && this.rpcRequestCall.request["headers"]) {
+      requestId = this.rpcRequestCall.request["headers"][this.requestIdKey] || ""
+    }
     return this.logger.child({ requestId });
   }
 

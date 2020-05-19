@@ -19,7 +19,7 @@
       "koa-json": "^2.0.2",
       "lodash": "^4.17.15",
       "koa-validate": "^1.0.7",
-      "zonetk-core": "^1.1.5"
+      "zonetk-core": "^1.2.8"
    },
    "scripts": {
       "start": "node dist/index.js",
